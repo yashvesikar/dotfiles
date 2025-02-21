@@ -1,0 +1,68 @@
+# ----------- Python --------------
+# forked settings from here using basedpyright with homebrew https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#pyright--ruff
+[[language]]
+name = "python"
+language-servers = [ "basedpyright", "ruff" ]
+
+[language-server.basedpyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+# if you choose `ruff` itself
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+# ----------- TOML --------------
+#### taplo for toml - doesn't really seem to work, i should remove this
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[language-server.taplo.config]
+# Workaround for nonsense of being nonfunctional outside git directories
+# (https://github.com/helix-editor/helix/issues/3897#issuecomment-2361674437)
+root_dir = [".git", "*.toml"]
+
+
+# ----------- TS/JS --------------
+# biome
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+# ----------- Markdown --------------
+# mdpls as markdown preview lsp: https://github.com/euclio/mdpls?tab=readme-ov-file
+# source: https://github.com/helix-editor/helix/issues/2824#issuecomment-1840752115
+[[language]]
+name = "markdown"
+soft-wrap.enable = true
+text-width = 80
+soft-wrap.wrap-at-text-width = true
+language-servers = ["marksman", "mdpls"]
+
+[language-server.mdpls]
+command = "/Users/yash/.cargo/bin/mdpls"
+config = { markdown.preview.auto = true }

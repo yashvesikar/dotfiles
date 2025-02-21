@@ -1,0 +1,20 @@
+theme = "dark_plus"
+
+
+[editor]
+line-number="relative"
+
+[editor.file-picker]
+hidden=false
+
+# lazygit integration
+# https://github.com/helix-editor/helix/wiki/Recipes#git-integration
+[keys.normal]
+A-g = [
+    ":write-all",
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]

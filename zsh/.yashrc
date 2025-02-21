@@ -1,0 +1,74 @@
+alias ll="ls -la"
+alias szp="source ~/.zshrc"
+
+# Git aliases
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gsw="git checkout main && git pull && git checkout -b"
+
+
+# Homebrew
+alias ibrew="arch -x86_64 /usr/local/bin/brew"
+alias python37="/usr/local/opt/python@3.7/bin/python3"
+alias pip37="/usr/local/opt/python@3.7/bin/pip3"
+
+# pipenv
+export PATH="/Users/yash/.local:$PATH"
+
+# needed to get pipenv working on pycharm
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export SAM_CLI_TELEMETRY=0
+
+# tmuxinator
+alias mux=tmuxinator
+export EDITOR='vim'
+alias dir=ls
+
+# cat
+alias cat="bat"
+
+
+## ## ## ## ## ## ## ## ##
+## Flutter
+## ## ## ## ## ## ## ## ##
+export PATH="`pwd`/flutter/bin:$PATH"
+
+# Android AVD Path
+export ANDROID_HOME=/Users/yash/Library/Android/sdk
+export PATH=/Users/yash/Library/Android/sdk/platform-tools:$PATH
+
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# intellij idea path
+export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+
+# neovim alias
+alias vim="nvim"
+
+
+## zip util
+function zip-visible(){
+    zip -FSr $1 $2 -X -x "*/\.*"
+}
+
+## ruby
+export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+export PATH=`gem environment gemdir`/bin:$PATH
+
+
+# go
+export GOPATH=$HOME/go
+
+# postgresql
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
