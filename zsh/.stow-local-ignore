@@ -1,0 +1,4 @@
+# I only want to stow the .zshenv so it points zsh to the correct directory
+
+# Match everything except .zshenv
+^(?!.zshenv$).*$

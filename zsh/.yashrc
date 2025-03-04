@@ -1,5 +1,5 @@
 alias ll="ls -la"
-alias szp="source ~/.zshrc"
+alias szp="source ${pwd}/.zshrc"
 
 # Git aliases
 alias gs="git status"
@@ -12,6 +12,9 @@ alias gsw="git checkout main && git pull && git checkout -b"
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
 alias python37="/usr/local/opt/python@3.7/bin/python3"
 alias pip37="/usr/local/opt/python@3.7/bin/pip3"
+
+# Kitty - need to make sure kitty is stowed
+alias code="kitty @ kitten ~/.config/kitty/code_kitten.py"
 
 # pipenv
 export PATH="/Users/yash/.local:$PATH"
@@ -30,16 +33,9 @@ alias dir=ls
 # cat
 alias cat="bat"
 
-
-## ## ## ## ## ## ## ## ##
-## Flutter
-## ## ## ## ## ## ## ## ##
-export PATH="`pwd`/flutter/bin:$PATH"
-
 # Android AVD Path
 export ANDROID_HOME=/Users/yash/Library/Android/sdk
 export PATH=/Users/yash/Library/Android/sdk/platform-tools:$PATH
-
 
 # Zoxide
 eval "$(zoxide init zsh)"

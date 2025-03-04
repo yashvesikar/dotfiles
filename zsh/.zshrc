@@ -43,4 +43,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 . "/Users/yash/.deno/env"
 
 # Aliases and custom configs
-source ./.yashrc
+source "$ZDOTDIR/.yashrc"
