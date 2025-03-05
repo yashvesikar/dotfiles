@@ -1,5 +1,5 @@
 alias ll="ls -la"
-alias szp="source ${pwd}/.zshrc"
+alias szp="source $HOME/dotfiles/zsh/.zshrc"
 
 # Git aliases
 alias gs="git status"
@@ -68,3 +68,5 @@ export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
+# Rust stuff
+export PATH="$HOME/.cargo/bin:$PATH"
