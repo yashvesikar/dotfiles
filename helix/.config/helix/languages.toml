@@ -65,7 +65,7 @@ name = "markdown"
 soft-wrap.enable = true
 text-width = 80
 soft-wrap.wrap-at-text-width = true
-language-servers = ["marksman", "mdpls"]
+language-servers = ["marksman", "mdpls", "harper-ls"]
 # followed formatter setup from here: https://medium.com/@CaffeineForCode/helix-setup-for-markdown-b29d9891a812
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md"]}
 auto-format = true
@@ -74,3 +74,13 @@ rulers = [120]
 [language-server.mdpls]
 command = "/Users/yash/.cargo/bin/mdpls"
 config = { markdown.preview.auto = true }
+
+# ----------- Harper --------------
+# Until spellcheck has first class support with spellbook: https://github.com/helix-editor/helix/issues/11660 Harper is the best alternative.
+# Documentation: https://writewithharper.com/docs/integrations/helix
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls.config.harper-ls]
+diagnosticSeverity = "warning"
