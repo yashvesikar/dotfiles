@@ -4,6 +4,8 @@
 [[language]]
 name = "python"
 language-servers = [ "basedpyright", "ruff" ]
+formatter = { command = "ruff", args = ["format", "-"] }
+auto-format = true
 
 [language-server.basedpyright.config.python.analysis]
 typeCheckingMode = "basic"
@@ -76,6 +78,7 @@ command = "/Users/yash/.cargo/bin/mdpls"
 config = { markdown.preview.auto = true }
 
 # ----------- Harper --------------
+# MacOS: brew install harper 
 # Until spellcheck has first class support with spellbook: https://github.com/helix-editor/helix/issues/11660 Harper is the best alternative.
 # Documentation: https://writewithharper.com/docs/integrations/helix
 [language-server.harper-ls]
