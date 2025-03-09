@@ -13,6 +13,9 @@ source "$ZDOTDIR/plugins/zsh-defer.plugin.zsh"
 # evalcache to speed up subsequent shell loads: https://github.com/mroth/evalcache
 source "$ZDOTDIR/plugins/zsh-evalcache.plugin.zsh"
 
+# zsh-autocomplete plugin
+source "$ZDOTDIR/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+
 # ------------- Custom -----------------
 # Aliases and custom configs
 source "$ZDOTDIR/.yashrc"

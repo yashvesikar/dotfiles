@@ -12,5 +12,5 @@ ALTERNATE_EDITOR="vim"
 GIT_EDITOR="hx"
 
 # ls color defaults coloring for BSD-based ls (generated via https://geoff.greer.fm/lscolors)
-LSCOLORS="Gxfxcxdxbxegedabagacad"
-CLICOLOR="Yes"
+# LSCOLORS="Gxfxcxdxbxegedabagacad"
+# CLICOLOR=1

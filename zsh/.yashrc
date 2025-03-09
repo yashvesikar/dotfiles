@@ -1,3 +1,8 @@
+ 
+# ls color defaults coloring for BSD-based ls (generated via https://geoff.greer.fm/lscolors)
+# LSCOLORS cannot be set in the .zshenv for some reason.
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export CLICOLOR=1
 alias l="ls -l"
 alias ll="ls -la"
 
@@ -11,6 +16,7 @@ alias cat="bat"
 
 # Kitty - need to make sure kitty is stowed
 alias code="kitty @ kitten ~/.config/kitty/code_kitten.py"
+# alias code="kitty --session ~/.config/kitty/code.session"
 
 # Zoxide
 zsh-defer _evalcache zoxide init zsh

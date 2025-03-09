@@ -17,9 +17,7 @@ Structure inspired by [Cody Reichert's](https://github.com/CodyReichert/dotfiles
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # Install basics
-  brew install kitty
-  brew install git
-  brew install helix
+  brew install kitty git helix zsh
 ```
 
 </details>
@@ -47,7 +45,18 @@ Some tools and applications require additional dependencies and setup. Expand th
 
 ### Terminal
 
-- [kitty](https://sw.kovidgoyal.net/kitty/)
+<!-- dprint-ignore-start -->
+> <details>
+>   <summary>
+>     <a href="https://sw.kovidgoyal.net/kitty/">kitty</a>
+>   </summary>
+> 
+>   #### Kitty setup
+>   1. Install the [Fira Code](https://github.com/tonsky/FiraCode) font.
+>   2. `stow kitty`
+>   
+> </details>
+<!-- dprint-ignore-end -->
 
 <!-- dprint-ignore-start -->
 > <details>
@@ -95,14 +104,8 @@ Some tools and applications require additional dependencies and setup. Expand th
 >   # Markdown
 >   brew install marksman dprint harper && \
 >     cargo install --git https://github.com/euclio/mdpls
+>   stow dprint
 > ```
 >
 > </details>
 <!-- dprint-ignore-end -->
-
-### Writing
-
-- [dprint](https://dprint.dev/)
-
-```
-```
