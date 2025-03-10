@@ -1,4 +1,8 @@
- 
+ # Editor defaults
+export EDITOR="hx"
+export ALTERNATE_EDITOR="vim"
+export GIT_EDITOR="hx"
+
 # ls color defaults coloring for BSD-based ls (generated via https://geoff.greer.fm/lscolors)
 # LSCOLORS cannot be set in the .zshenv for some reason.
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
