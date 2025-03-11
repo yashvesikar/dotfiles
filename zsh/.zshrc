@@ -1,6 +1,5 @@
 # Initialize powerlevel10k
-# TODO: consider moving this as a submodule of this repo
-source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme"
 source "$ZDOTDIR/.p10k.zsh"
 
 # ------------- Plugins -----------------
