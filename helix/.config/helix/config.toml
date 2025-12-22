@@ -1,14 +1,46 @@
+# Sources:
+# - https://tqwewe.com/blog/enhanced-helix-config/
+# - https://github.com/helix-editor/helix/wiki/Recipes#git-integration
+ 
 theme = "dark_plus"
 
-
 [editor]
-line-number="relative"
+# Show currently open buffers, only when more than one exists.
+bufferline = "multiple"
+# Highlight all lines with a cursor
+cursorline = true
+# Use relative line numbers
+line-number = "relative"
+# Show a ruler at column 120
+rulers = [120]
+# Force the theme to show colors
+true-color = true
+# Change default yank register to system register
+default-yank-register = "+"
+
+# Minimum severity to show a diagnostic after the end of a line
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "error" # Show inline diagnostics when the cursor is on the line
+other-lines = "disable" # Don't expand diagnostics unless the cursor is on the line
+
+
+# Show a bar cursor in insert mode, a block cursor in normal mode, and underline cursor in select mode.
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
 
 [editor.file-picker]
 hidden=false
 
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 3000
+
+
 # lazygit integration
-# https://github.com/helix-editor/helix/wiki/Recipes#git-integration
 [keys.normal]
 A-g = [
     ":write-all",
@@ -18,3 +50,40 @@ A-g = [
     ":redraw",
     ":reload-all"
 ]
+
+# Move around active buffers
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+"A-w" = ":buffer-close"
+"A-/" = "repeat_last_motion"
+
+# Shrink a Line Up
+A-x = "extend_to_line_bounds"
+X = "select_line_above"
+
+# save on escape
+esc = ["collapse_selection", ":w"]
+
+[keys.select]
+A-x = "extend_to_line_bounds"
+X = "select_line_above"
+
+# save on escape
+esc = ["collapse_selection", "normal_mode", ":w"]
+
+[keys.normal.space]
+# Custom command for word count
+A-w = "@<A-|>tee /tmp/helix-wc.file<ret>:sh cat /tmp/helix-wc.file | wc -w<ret>"
+
+# open kitty quick access terminal
+t=":run-shell-command kitten quick-access-terminal"
+
+# save on escape
+[keys.insert]
+# Move around active buffers
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+"A-w" = ":buffer-close"
+
+# Comment even in insert mode
+C-c = ["toggle_comments"]
