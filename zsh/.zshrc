@@ -22,9 +22,19 @@ autoload -Uz compinit && compinit
 # ------------- Custom -----------------
 # Aliases and custom configs
 source "$ZDOTDIR/.yashrc"
+source "$ZDOTDIR/.env"
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+setopt EXTENDED_HISTORY
 
 # ------------- Plugins -----------------
 
 # zsh-syntax-highlighting: https://github.com/zsh-users/zsh-syntax-highlighting/
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
+# zsh-history-substring-search: https://github.com/zsh-users/zsh-history-substring-search/tree/3235b885ddd42f912dbb981abd31ab9a098eca85
+source "$ZDOTDIR/plugins/zsh-history-substring-search.plugin.zsh"
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down

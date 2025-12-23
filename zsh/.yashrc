@@ -1,7 +1,13 @@
- # Editor defaults
+# Notes
+#  defer order matters!
+#    i.e. since fnm is defered after homebrew the fnm node path occurs before homebrew node
+
+# Editor defaults
 export EDITOR="hx"
 export ALTERNATE_EDITOR="vim"
 export GIT_EDITOR="hx"
+export HELIX_RUNTIME=~/helix/runtime
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # ls color defaults coloring for BSD-based ls (generated via https://geoff.greer.fm/lscolors)
 # LSCOLORS cannot be set in the .zshenv for some reason.
@@ -14,45 +20,73 @@ alias ll="ls -la"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
+alias lg="lazygit --use-config-file=\"$HOME/.config/lazygit/theme.yml\""
 
 # bat (cat alternative): https://github.com/sharkdp/bat
 alias cat="bat"
 
 # Kitty - need to make sure kitty is stowed
 alias code="kitty @ kitten ~/.config/kitty/code_kitten.py"
+alias icat="kitten icat"
 # alias code="kitty --session ~/.config/kitty/code.session"
 
 # Zoxide
 zsh-defer _evalcache zoxide init zsh
+# Prevents annoying case insensitivity in the shell https://github.com/ajeetdsouza/zoxide/issues/740#issuecomment-2577741371
+setopt CHASE_LINKS
 
 # direnv
 zsh-defer _evalcache direnv hook zsh
-
-# fnm
-zsh-defer _evalcache fnm env --use-on-cd --version-file-strategy=recursive --shell zsh
+# direnv end
 
 # homebrew
 zsh-defer _evalcache eval /opt/homebrew/bin/brew shellenv
+# homebrew end
 
+# fnm
+zsh-defer _evalcache fnm env --use-on-cd --version-file-strategy=recursive --shell zsh
+# fnm end
+
+# orbstack
 # Added by OrbStack: command-line tools and integration
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# orbstack
 
 ## ruby
 export PATH=/opt/homebrew/opt/ruby/bin:$PATH
-export PATH=`gem environment gemdir`/bin:$PATH
-
-# go
-export GOPATH=$HOME/go
+export PATH="$(gem environment gemdir)/bin:$PATH"
+# ruby end
 
 # postgresql
 export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+# postgresql end
 
-# Rust stuff
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+# Rust end
+# asdf configuration
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# asdf end
 
+# pnpm
+export PNPM_HOME="/Users/yash/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm ends
 
+# go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+# go end
+
+# basictex and pdflatex
+# brew install basictex
+export PATH="/Library/TeX/texbin:$PATH"
+# basictex end
+
+# invoicer tool
+export PATH="$HOME/dev/projects/invoicer:$PATH" 
 # TODO: move functions to a different file and load via $FPATH and autoload
 
 ## zip util
@@ -68,7 +102,39 @@ function timezsh() {
 
 # function to source the zsh profile
 function szp() {
+  rm -rf /tmp/.zsh-evalcache
+  mv $HOME/.zsh-evalcache /tmp
   source "$HOME/dotfiles/zsh/.zshrc"
 }
 
+# alias for yazi: https://yazi-rs.github.io/docs/quick-start
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
+# function to quickly go up multiple directories
+# inspired by: https://superuser.com/a/1188251
+function up() {
+    local d=${1:-1}
+    if ! [[ $d =~ ^[0-9]+$ ]]; then
+        echo "up: Error: invalid non-negative integer" >&2
+        return 1
+    fi
+    local target
+    target=$(pwd | sed -E "s;(\/[^/]*){0,$d}\$;;")
+    cd "${target:-/}" || return
+}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yash/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yash/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yash/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yash/google-cloud-sdk/completion.zsh.inc'; fi
+
+# The next line configures python for gcloud
+# export CLOUDSDK_PYTHON=$(which python3)
